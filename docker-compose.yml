@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  frontend:
+    build: ./Frontend
+    container_name: JSX-VectorApp
+    ports:
+      - "443:443"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mern-app
+  backend:
+    build: ./Backend
+    container_name: RS-Vector-Node
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+    networks:
+      - mern-app
+  database:
+    image: mongo:3.6.19-xenial
+    container_name: DB-Vector
+    ports:
+      - "27017:27017"
+    networks:
+      - mern-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local

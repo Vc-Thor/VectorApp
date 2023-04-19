@@ -46,7 +46,7 @@ userRouter.put(
 userRouter.post(
   '/addUser',
   [
-    validationJWT,
+    // validationJWT,
     check('email', 'email is not valid').isEmail(),
     check('email', 'email is not valid').custom(validatorEmail),
     check('name', 'name is requerid').not().isEmpty(),
@@ -57,7 +57,7 @@ userRouter.post(
       .isLength({ min: 6 })
       .not()
       .isEmpty(),
-    check('role').custom(validatorRole),
+    // check('role').custom(validatorRole),
     fieldValidation,
   ],
   userPost,
