@@ -57,7 +57,7 @@ userRouter.post(
       .isLength({ min: 6 })
       .not()
       .isEmpty(),
-    // check('role').custom(validatorRole),
+    check('role').custom(validatorRole),
     fieldValidation,
   ],
   userPost,
